@@ -145,8 +145,13 @@ int ViewportAdaptImage(void)
 //-------------------------------------------------------------------------------------------------
 int ViewportInitialize(char *String_Window_Title, SDL_Surface *Pointer_Surface_Image)
 {
-	// Try to create the viewport window
-	Pointer_Viewport_Window = SDL_CreateWindow(String_Window_Title, 0, 0, 640, 480, SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED);
+    // Try to create the viewport window in full screen mode
+    Pointer_Viewport_Window = SDL_CreateWindow(
+        String_Window_Title,
+        SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+        640, 480, 
+        SDL_WINDOW_FULLSCREEN_DESKTOP // Use SDL_WINDOW_FULLSCREEN_DESKTOP to create a full screen window
+    );
 	if (Pointer_Viewport_Window == NULL)
 	{
 		printf("[%s:%d] Error : failed to create the SDL window (%s).\n", __FUNCTION__, __LINE__, SDL_GetError());
